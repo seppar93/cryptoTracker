@@ -1,5 +1,11 @@
 // Modules
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+// Actions
+import * as actions from './redux/actions/action'
+
 
 // Styling
 import './App.css';
@@ -10,23 +16,26 @@ import CryptoDataServices from './services/CryptoDataServices';
 // Components 
 import Header from './components/Header'
 
-export default class App extends Component {
+ class App extends Component {
   constructor() {
     super();
     this.cryptoDataServices = new CryptoDataServices();
     this.state ={ 
     }
   }
-  // fetch everything
-  // App as global state
-  // pass 5 to header and 5 table
-  // filter global state by id or w/e
-  // change handler in child changes
+  // TODO: fetch price from second call
+  componentDidMount() {
+    // this.props.actions.fetchCryptoDataPending();
+    // this.cryptoDataServices.getData().then((res) => {
+    //   this.props.actions.fetchCryptoDataSuccess(res.data)
+    // }).catch((error) => {
+    //   this.props.actions.fetchCryptoDataError(error);
+    // })
 
+    this.cryptoDataServices.getData()
 
-  // global state
-  // arr for table and dropdown
-  // ie. remove from table to data
+  }
+ 
 
   render() {
     return (
@@ -37,3 +46,12 @@ export default class App extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    data: state.data,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actions, dispatch) };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -3,7 +3,7 @@
 import React, {useState} from 'react'
 
 // Assets
-import { ReactComponent as Icon } from '../paccopy.svg';
+import { ReactComponent as Icon } from '../assets/icons/paccopy.svg';
 
 // styling 
 import './Header.css'
