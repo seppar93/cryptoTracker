@@ -1,29 +1,36 @@
 // Actions
-import {FETCH_CRYPTO_PENDING,FETCH_CRYPTO_SUCCESS, FETCH_CRYPTO_ERROR } from '../actions/action'
+import {
+  FETCH_CRYPTO_PENDING,
+  FETCH_CRYPTO_SUCCESS,
+  FETCH_CRYPTO_ERROR,
+} from '../actions/action';
 
 // Redux State
 const initialState = {
   pending: false,
-  data: new Map(), 
-  error: null
-}
+  data: new Map(),
+  error: null,
+};
 
 const reducers = (state = initialState, action) => {
-  const newState = Object.assign({}, state)
+  const newState = Object.assign({}, state);
 
   switch (action.type) {
     case FETCH_CRYPTO_PENDING:
-      return {
-        ...state,
-        pending: true,
-      };
+      newState.pending = true;
+
+      return newState;
 
     case FETCH_CRYPTO_SUCCESS:
       newState.pending = false;
-      newState.users = new Map();
-      action.payload.map((val, index) => {
-        newState.users.set(val.symbol, val);
+      const cryptoData = action.payload.slice(0, 10);
+      newState.data = new Map();
+
+      cryptoData.map((val) => {
+        newState.data.set(val.id, val);
       });
+      console.log(newState);
+
       return newState;
 
     case FETCH_CRYPTO_ERROR:
@@ -35,5 +42,5 @@ const reducers = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 export default reducers;

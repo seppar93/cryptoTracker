@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // Actions
-import * as actions from './redux/actions/action'
-
+import * as actions from './redux/actions/action';
 
 // Styling
 import './App.css';
@@ -13,35 +12,32 @@ import './App.css';
 // Services
 import CryptoDataServices from './services/CryptoDataServices';
 
-// Components 
-import Header from './components/Header'
+// Components
+import Header from './components/Header';
 
- class App extends Component {
+class App extends Component {
   constructor() {
     super();
     this.cryptoDataServices = new CryptoDataServices();
-    this.state ={ 
-    }
+    this.state = {};
   }
   // TODO: fetch price from second call
   componentDidMount() {
-    // this.props.actions.fetchCryptoDataPending();
-    // this.cryptoDataServices.getData().then((res) => {
-    //   this.props.actions.fetchCryptoDataSuccess(res.data)
-    // }).catch((error) => {
-    //   this.props.actions.fetchCryptoDataError(error);
-    // })
-
-    this.cryptoDataServices.getData()
-
+    this.props.actions.fetchCryptoDataPending();
+    this.cryptoDataServices
+      .getData()
+      .then((res) => {
+        this.props.actions.fetchCryptoDataSuccess(res.data.currencies);
+      })
+      .catch((error) => {
+        this.props.actions.fetchCryptoDataError(error);
+      });
   }
- 
 
   render() {
     return (
       <div>
-        <Header/>
-
+        <Header />
       </div>
     );
   }

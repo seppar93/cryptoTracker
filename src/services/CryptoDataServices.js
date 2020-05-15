@@ -4,15 +4,14 @@
  */
 
 // Modules
-import axios from 'axios'
+import axios from 'axios';
 
 export default class CryptoDataServices {
-  getData () {
+  getData() {
     const request = {
-      url:
-        'https://www.stackadapt.com/coinmarketcap/map'
+      url: 'https://www.stackadapt.com/coinmarketcap/map',
     };
-    return axios(request)
+    return axios(request);
   }
 
   getCryptoPrice(data) {
@@ -20,6 +19,6 @@ export default class CryptoDataServices {
       url: 'https://www.stackadapt.com/coinmarketcap/quotes',
       params: { id: data },
     };
-    return axios(request)
+    return axios(request);
   }
 }
