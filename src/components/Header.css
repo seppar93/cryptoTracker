@@ -1,26 +1,17 @@
-:root {
-  --bg:#43d3af;
-  --bg-accent:#3381ec;
-  --text-color: #dadce1;
-  --nav-size: 60px;
-  --border: 1px solid #ced9e4;
-   --border-radius: 8px;
-  --speed: 500ms;
-}
-
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-a { color : var(--text-color);
+a {
+  color: var(--text-color);
   text-decoration: none;
 }
 
 .navbar {
   height: var(--nav-size);
-  background-color: var(--bg);
+  background: linear-gradient(to left, #0f273d, #9cb3c9);
   padding: 0 1rem;
   border-bottom: var(--bg-accent);
 }
@@ -43,14 +34,13 @@ a { color : var(--text-color);
   --button-size: calc(var(--nav-size) * 0.5);
   width: var(--button-size);
   height: var(--button-size);
-  background-color: #484a4d;
+  background-color: #ffffff;
   border-radius: 50%;
   padding: 5px;
   margin: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .icon-button:hover {
@@ -61,7 +51,6 @@ a { color : var(--text-color);
   fill: var(--text-color);
   width: 20px;
   height: 20px;
-
 }
 
 /* Dropdown menu */
@@ -79,8 +68,8 @@ a { color : var(--text-color);
 }
 
 .menu-item {
-  height:50px;
-  display:flex;
+  height: 50px;
+  display: flex;
   align-items: center;
   border-radius: var(--border-radius);
   transition: background var(--speed);
@@ -88,7 +77,7 @@ a { color : var(--text-color);
 }
 
 .menu-item:hover {
-  background-color: var(--bg-accent);
+  background-color: var(--element);
 }
 
 .icon-right {

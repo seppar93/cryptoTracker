@@ -14,6 +14,7 @@ import CryptoDataServices from './services/CryptoDataServices';
 
 // Components
 import Header from './components/Header';
+import Table from './components/Table'
 
 class App extends Component {
   constructor() {
@@ -38,6 +39,7 @@ class App extends Component {
     return (
       <div>
         <Header />
+        <Table />
       </div>
     );
   }

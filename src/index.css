@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+:root {
+  /* --bg:#43d3af; */
+  --element: #9cb3c9;
+  --bg: #0f273d;
+  --bg-accent: #3381ec;
+  --nav-size: 60px;
+  --border: 1px solid #ced9e4;
+  --border-radius: 8px;
+  --speed: 500ms;
+  --text-color: #ffffff;
+}

@@ -1,17 +1,16 @@
-
 // Modules
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 
 // Assets
 import { ReactComponent as Icon } from '../assets/icons/paccopy.svg';
 
-// styling 
-import './Header.css'
-
+// styling
+import './Header.css';
 
 export default function Header(props) {
   return (
-    <div>
+    <div className='Header-container'>
+
       <Navbar>
         <NavItem icon={<Icon />}>
           <DropDownMenu></DropDownMenu>
@@ -32,7 +31,7 @@ function Navbar(props) {
 }
 
 function NavItem(props) {
-  const [open, setOpen] = useState()
+  const [open, setOpen] = useState();
 
   return (
     <li className='nav-item'>
@@ -43,29 +42,19 @@ function NavItem(props) {
     </li>
   );
 }
-function DropDownMenu(){
-
+function DropDownMenu() {
   function DropDownItem(props) {
-    return ( 
-      <div className='menu-item'>
+    return (
+      <a className='menu-item'>
         <span className='icon-button'>{props.leftIcon}</span>
         {props.children}
-        
-      </div>
-    )
+      </a>
+    );
   }
 
   return (
     <div className='dropdown'>
       <DropDownItem leftIcon={<Icon />}>TESTING</DropDownItem>
-
     </div>
   );
-
 }
-
-
-
-
-
-
