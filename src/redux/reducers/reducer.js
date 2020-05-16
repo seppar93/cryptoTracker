@@ -8,7 +8,8 @@ import {
 // Redux State
 const initialState = {
   pending: false,
-  data: new Map(),
+  tableData: [],
+  dropDownData: [],
   error: null,
 };
 
@@ -23,14 +24,9 @@ const reducers = (state = initialState, action) => {
 
     case FETCH_CRYPTO_SUCCESS:
       newState.pending = false;
-      const cryptoData = action.payload.slice(0, 10);
-      newState.data = new Map();
-
-      cryptoData.map((val) => {
-        newState.data.set(val.id, val);
-      });
-      console.log(newState);
-
+      newState.tableData = action.payload.slice(0, 5);
+      newState.dropDownData = action.payload.slice(6,11);
+      // console.log("NEW STATE",newState);
       return newState;
 
     case FETCH_CRYPTO_ERROR:

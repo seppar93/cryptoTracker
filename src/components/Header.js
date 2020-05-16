@@ -1,26 +1,31 @@
 // Modules
 import React, { useState } from 'react';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as actions from '../redux/actions/action';
+
 // Assets
 import { ReactComponent as Icon } from '../assets/icons/paccopy.svg';
 
 // styling
 import './Header.css';
 
-export default function Header(props) {
+function Header(props) {
+  // console.log(props);
+
   return (
     <div className='Header-container'>
-
       <Navbar>
         <NavItem icon={<Icon />}>
-          <DropDownMenu></DropDownMenu>
+          <DropDownMenu data={props.data}></DropDownMenu>
           {/* DROP DOWN */}
         </NavItem>
       </Navbar>
     </div>
   );
 }
-
 
 function Navbar(props) {
   return (
@@ -42,19 +47,39 @@ function NavItem(props) {
     </li>
   );
 }
-function DropDownMenu() {
+
+function DropDownMenu(props) {
   function DropDownItem(props) {
+    console.log(props);
+
     return (
       <a className='menu-item'>
         <span className='icon-button'>{props.leftIcon}</span>
-        {props.children}
+        {props.coin.name}
       </a>
     );
   }
 
   return (
     <div className='dropdown'>
-      <DropDownItem leftIcon={<Icon />}>TESTING</DropDownItem>
+      {!props.data ? (
+        <>LOADING</>
+      ) : (
+        props.data.map((val) => {
+          return <DropDownItem coin={val} leftIcon={<Icon />} />;
+        })
+      )}
     </div>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    data: state.dropDownData,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actions, dispatch) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

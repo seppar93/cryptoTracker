@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../redux/actions/action';
 
-import './Table.css'
+import './Table.css';
+import { bindActionCreators } from 'redux';
 // sort by rank and price
-export const Table = () => {
+export const Table = (props) => {
   return (
     <div className='Table-container'>
       <table className='Table'>
@@ -18,35 +20,57 @@ export const Table = () => {
         </thead>
         <tbody className='Table-body'>
           {/* add mapping of data */}
-          <tr>
-            <td className='Remove-button'>
-              <i class='far fa-trash-alt'></i>
-            </td>
-            <td>
-              <span className='Table-format'>{/* CMC  */}TEST</span>
-            </td>
-            <td>
-              <span className='Table-format'>{/* CMC  */}TEST</span>
-            </td>
-            <td>
-              <span className='Table-format'>{/* symbol  */}TEST</span>
-            </td>
-            <td>
-              <span className='Table-format'>{/* price  */}TEST</span>
-            </td>
-          </tr>
+          {!props.data ? (
+            // update styling
+            <>loading</>
+          ) : (
+            props.data.map((val) => {
+              return (
+                <tr>
+                  <td className='Remove-button'>
+                    <i className='far fa-trash-alt'></i>
+                  </td>
+                  <td>
+                    <span className='Table-format'>
+                      {/* Name  */}
+                      {val.name}
+                    </span>
+                  </td>
+                  <td>
+                    <span className='Table-format'>
+                      {/* CMC  */}
+                      {val.rank}
+                    </span>
+                  </td>
+                  <td>
+                    <span className='Table-format'>
+                      {/* symbol  */}
+                      {val.percentChange24h}
+                    </span>
+                  </td>
+                  <td>
+                    <span className='Table-format'>
+                      {/* price  */}
+                      {val.id}
+                    </span>
+                  </td>
+                </tr>
+              );
+            })
+          )}
         </tbody>
       </table>
     </div>
   );
+};
+
+function mapStateToProps(state) {
+  return {
+    data: state.tableData,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actions, dispatch) };
 }
 
-const mapStateToProps = (state) => ({
-  
-})
-
-const mapDispatchToProps = {
-  
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Table)
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
