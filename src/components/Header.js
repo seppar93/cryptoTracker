@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../redux/actions/action';
 
+
+
 // Assets
 import { ReactComponent as Icon } from '../assets/icons/paccopy.svg';
 
@@ -13,13 +15,18 @@ import { ReactComponent as Icon } from '../assets/icons/paccopy.svg';
 import './Header.css';
 
 function Header(props) {
-  // console.log(props);
+  console.log(props);
+  
+  
 
   return (
     <div className='Header-container'>
       <Navbar>
         <NavItem icon={<Icon />}>
-          <DropDownMenu data={props.data}></DropDownMenu>
+          <DropDownMenu
+            addCoin={props.actions.moveCoinToTable}
+            data={props.data}
+          />
           {/* DROP DOWN */}
         </NavItem>
       </Navbar>
@@ -49,28 +56,32 @@ function NavItem(props) {
 }
 
 function DropDownMenu(props) {
-  function DropDownItem(props) {
-    console.log(props);
-
-    return (
-      <a className='menu-item'>
-        <span className='icon-button'>{props.leftIcon}</span>
-        {props.coin.name}
-      </a>
-    );
-  }
-
+  
   return (
     <div className='dropdown'>
       {!props.data ? (
         <>LOADING</>
-      ) : (
-        props.data.map((val) => {
-          return <DropDownItem coin={val} leftIcon={<Icon />} />;
-        })
-      )}
+        ) : (
+          Array.from(props.data, ([key, value]) => value).map((val) => {
+            return <DropDownItem addCoin={props.addCoin} coin={val} leftIcon={<Icon />} />;
+          })
+          )}
     </div>
   );
+  
+  function DropDownItem(props) {
+    
+    return (
+      <a className='menu-item'>
+        <span className='icon-button'>{props.leftIcon}</span>
+        <div onClick={() => props.addCoin(props.coin)}>
+          {props.coin.name}
+        </div>
+      </a>
+    );
+  }
+
+  
 }
 
 function mapStateToProps(state) {

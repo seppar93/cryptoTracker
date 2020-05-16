@@ -6,6 +6,9 @@ import './Table.css';
 import { bindActionCreators } from 'redux';
 // sort by rank and price
 export const Table = (props) => {
+  console.log(props);
+  
+  
   return (
     <div className='Table-container'>
       <table className='Table'>
@@ -24,7 +27,7 @@ export const Table = (props) => {
             // update styling
             <>loading</>
           ) : (
-            props.data.map((val) => {
+            Array.from(props.data, ([key, value]) => value).map((val) => {
               return (
                 <tr>
                   <td className='Remove-button'>
@@ -45,7 +48,7 @@ export const Table = (props) => {
                   <td>
                     <span className='Table-format'>
                       {/* symbol  */}
-                      {val.percentChange24h}
+                      {val.symbol}
                     </span>
                   </td>
                   <td>

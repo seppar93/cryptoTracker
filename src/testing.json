@@ -1,5 +1,5 @@
 {
-  "TEST": [
+  "data": [
     {
       "id": 1,
       "name": "Bitcoin",
@@ -95,6 +95,17 @@
       "slug": "freicoin",
       "is_active": 1,
       "rank": 1220,
+      "first_historical_data": "2019-08-17T00:04:02.000Z",
+      "last_historical_data": "2019-08-30T18:49:02.000Z",
+      "platform": null
+    },
+    {
+      "id": 13,
+      "name": "Ixcoin",
+      "symbol": "IXC",
+      "slug": "ixcoin",
+      "is_active": 1,
+      "rank": 1277,
       "first_historical_data": "2019-08-17T00:04:02.000Z",
       "last_historical_data": "2019-08-30T18:49:02.000Z",
       "platform": null

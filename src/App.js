@@ -9,6 +9,9 @@ import * as actions from './redux/actions/action';
 // Styling
 import './App.css';
 
+// DATA
+import DATA from './testing.json'
+
 // Services
 import CryptoDataServices from './services/CryptoDataServices';
 
@@ -22,17 +25,18 @@ class App extends Component {
     this.cryptoDataServices = new CryptoDataServices();
     this.state = {};
   }
+  
   // TODO: fetch price from second call
   componentDidMount() {
     this.props.actions.fetchCryptoDataPending();
-    this.cryptoDataServices
-      .getData()
-      .then((res) => {
-        this.props.actions.fetchCryptoDataSuccess(res.data.currencies);
-      })
-      .catch((error) => {
-        this.props.actions.fetchCryptoDataError(error);
-      });
+    // this.cryptoDataServices
+    //   .getData()
+      // .then((res) => {
+        this.props.actions.fetchCryptoDataSuccess(DATA.data);
+      // })
+      // .catch((error) => {
+        // this.props.actions.fetchCryptoDataError(error);
+      // });
   }
 
   render() {
