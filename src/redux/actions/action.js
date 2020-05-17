@@ -3,9 +3,6 @@
 export const FETCH_CRYPTO_PENDING = 'FETCH_CRYPTO_PENDING';
 export const FETCH_CRYPTO_SUCCESS = 'FETCH_CRYPTO_SUCCESS';
 export const FETCH_CRYPTO_ERROR = 'FETCH_CRYPTO_ERROR';
-
-export const FETCH_CRYPTO_PRICE_PENDING = 'FETCH_CRYPTO_PRICE_PENDING';
-export const FETCH_CRYPTO_PRICE_SUCCESS = 'FETCH_CRYPTO_PRICE_SUCCESS';
 export const FETCH_CRYPTO_PRICE_ERROR = 'FETCH_CRYPTO_PRICE_ERROR';
 
 
@@ -33,22 +30,10 @@ export function fetchCryptoDataError(error) {
 }
 
 
-export function fetchCryptoPricePending() {
-  return {
-    type: FETCH_CRYPTO_PENDING,
-  };
-}
-
-export function fetchCryptoPriceSuccess(data) {
-  return {
-    type: FETCH_CRYPTO_SUCCESS,
-    payload: data,
-  };
-}
 
 export function fetchCryptoPriceError(error) {
   return {
-    type: FETCH_CRYPTO_ERROR,
+    type: FETCH_CRYPTO_PRICE_ERROR,
     error: error,
   };
 }

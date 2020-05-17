@@ -9,6 +9,7 @@ export const Table = (props) => {
   console.log(props);
   
   
+  
   return (
     <div className='Table-container'>
       <table className='Table'>
@@ -54,7 +55,7 @@ export const Table = (props) => {
                   <td>
                     <span className='Table-format'>
                       {/* price  */}
-                      {val.id}
+                      {val.price}
                     </span>
                   </td>
                 </tr>

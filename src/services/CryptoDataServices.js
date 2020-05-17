@@ -17,7 +17,7 @@ export default class CryptoDataServices {
   getCryptoPrice(data) {
     const request = {
       url: 'https://www.stackadapt.com/coinmarketcap/quotes',
-      params: { id: data },
+      params: { symbol: data },
     };
     return axios(request);
   }

@@ -15,7 +15,6 @@ import { ReactComponent as Icon } from '../assets/icons/paccopy.svg';
 import './Header.css';
 
 function Header(props) {
-  console.log(props);
   
   
 
