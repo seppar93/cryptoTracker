@@ -3,7 +3,7 @@
  */
 
 // Modules
-import { applyMiddleware, createStore } from 'redux';
+import { createStore } from 'redux';
 
 import reducers from './reducers/reducer'
 

@@ -61,8 +61,8 @@ function DropDownMenu(props) {
       {!props.data ? (
         <>LOADING</>
         ) : (
-          Array.from(props.data, ([key, value]) => value).map((val) => {
-            return <DropDownItem addCoin={props.addCoin} coin={val} leftIcon={<Icon />} />;
+          props.data.map((val) => {
+            return <DropDownItem key={val.id} addCoin={props.addCoin} coin={val} leftIcon={<Icon />} />;
           })
           )}
     </div>

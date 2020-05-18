@@ -11,6 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+body {
+  /* background-color: var(--bg) ; */
+  background: linear-gradient(to right, #0f273d, #9cb3c9);
+
+}
 :root {
   /* --bg:#43d3af; */
   --element: #9cb3c9;

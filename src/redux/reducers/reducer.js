@@ -11,8 +11,8 @@ import {
 // Redux State
 const initialState = {
   pending: false,
-  tableData: new Map(),
-  dropDownData: new Map(),
+  tableData: [],
+  dropDownData: [],
   error: null,
 };
 
@@ -27,21 +27,11 @@ const reducers = (state = initialState, action) => {
       return newState;
 
     case FETCH_CRYPTO_SUCCESS:
-      // setting data
-      newState.tableData = new Map();
-      newState.dropDownData = new Map();
+      // change status of pending
       newState.pending = false;
       // separating 5 coins between table and dropdown
-      const displayedInDropdown = action.payload.slice(5, 10);
-      const displayedInTable = action.payload.slice(0, 5);
-
-      // setting data in maps
-      displayedInTable.map((value) =>
-        newState.tableData.set(value.symbol, value)
-      );
-      displayedInDropdown.map((value) =>
-        newState.dropDownData.set(value.symbol, value)
-      );
+      newState.tableData = action.payload.slice(5, 10);
+      newState.dropDownData = action.payload.slice(0, 5);
 
       return newState;
 
@@ -58,15 +48,23 @@ const reducers = (state = initialState, action) => {
         error: action.error,
       };
 
+    case TRANSFER_COIN_TO_DROPDOWN:
+      if (newState.tableData.length > 1) {
+        // condition to keep one coin in the table
+        newState.tableData = [
+          ...newState.tableData.filter((coin) => coin !== action.payload),
+        ];
+        newState.dropDownData = [...newState.dropDownData, action.payload];
+      }
+
+      return newState;
+
     // TRANSFER COIN FROM TABLE DROPDOWN
     case TRANSFER_COIN_TO_TABLE:
-      // console.log('STATE',newState.dropDownData);
-      // console.log('PAYLOAD',action.payload.symbol);
-
-      newState.dropDownData.delete(action.payload.symbol);
-      newState.tableData.set(action.payload.symbol, action.payload);
-      // console.log(newState);
-      // console.log(state);
+      newState.dropDownData = [
+        ...newState.dropDownData.filter((coin) => coin !== action.payload),
+      ];
+      newState.tableData = [...newState.tableData, action.payload];
 
       return newState;
 

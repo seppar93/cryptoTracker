@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions/action';
 
@@ -6,7 +6,9 @@ import './Table.css';
 import { bindActionCreators } from 'redux';
 // sort by rank and price
 export const Table = (props) => {
-  console.log(props);
+  
+  const [sort, setSort] = useState();
+
   
   
   
@@ -15,11 +17,15 @@ export const Table = (props) => {
       <table className='Table'>
         <thead className='Table-head'>
           <tr>
-            <th>remove button</th>
+            <th>Remove button</th>
             <th>Cryptocurrency</th>
-            <th>CMC</th>
-            <th>symbol</th>
-            <th>price</th>
+            <th>
+              CMC <i className='fas fa-arrow-down'></i>
+            </th>
+            <th>Symbol</th>
+            <th>
+              Price <i className='fas fa-arrow-down'></i>
+            </th>
           </tr>
         </thead>
         <tbody className='Table-body'>
@@ -28,11 +34,13 @@ export const Table = (props) => {
             // update styling
             <>loading</>
           ) : (
-            Array.from(props.data, ([key, value]) => value).map((val) => {
+            props.data.map((val) => {
               return (
-                <tr>
+                <tr key={val.id} >
                   <td className='Remove-button'>
-                    <i className='far fa-trash-alt'></i>
+                    <i
+                      onClick={() => props.actions.moveCoinToDropdown(val)}
+                      className='far fa-trash-alt'></i>
                   </td>
                   <td>
                     <span className='Table-format'>
