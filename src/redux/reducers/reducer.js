@@ -6,6 +6,7 @@ import {
   FETCH_CRYPTO_PRICE_ERROR,
   TRANSFER_COIN_TO_TABLE,
   TRANSFER_COIN_TO_DROPDOWN,
+  SORT_COIN_ORDER,
 } from '../actions/action';
 
 // Redux State
@@ -65,6 +66,17 @@ const reducers = (state = initialState, action) => {
         ...newState.dropDownData.filter((coin) => coin !== action.payload),
       ];
       newState.tableData = [...newState.tableData, action.payload];
+
+      return newState;
+
+      // SORT COIN
+    case SORT_COIN_ORDER:
+
+      newState.tableData = [
+        ...newState.tableData.sort(
+          (a, b) => b[action.payload] - a[action.payload]
+        ),
+      ];
 
       return newState;
 

@@ -1,12 +1,10 @@
 // Modules
 import React, { useState } from 'react';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+// Actions
 import * as actions from '../redux/actions/action';
-
-
 
 // Assets
 import { ReactComponent as Icon } from '../assets/icons/paccopy.svg';
@@ -15,9 +13,6 @@ import { ReactComponent as Icon } from '../assets/icons/paccopy.svg';
 import './Header.css';
 
 function Header(props) {
-  
-  
-
   return (
     <div className='Header-container'>
       <Navbar>
@@ -55,32 +50,33 @@ function NavItem(props) {
 }
 
 function DropDownMenu(props) {
-  
   return (
     <div className='dropdown'>
       {!props.data ? (
         <>LOADING</>
-        ) : (
-          props.data.map((val) => {
-            return <DropDownItem key={val.id} addCoin={props.addCoin} coin={val} leftIcon={<Icon />} />;
-          })
-          )}
+      ) : (
+        props.data.map((val) => {
+          return (
+            <DropDownItem
+              key={val.id}
+              addCoin={props.addCoin}
+              coin={val}
+              leftIcon={<Icon />}
+            />
+          );
+        })
+      )}
     </div>
   );
-  
+
   function DropDownItem(props) {
-    
     return (
       <a className='menu-item'>
         <span className='icon-button'>{props.leftIcon}</span>
-        <div onClick={() => props.addCoin(props.coin)}>
-          {props.coin.name}
-        </div>
+        <div onClick={() => props.addCoin(props.coin)}>{props.coin.name}</div>
       </a>
     );
   }
-
-  
 }
 
 function mapStateToProps(state) {
