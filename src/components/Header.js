@@ -53,7 +53,7 @@ function DropDownMenu(props) {
   return (
     <div className='dropdown'>
       {!props.data ? (
-        <>LOADING</>
+        <>LOADING...</>
       ) : (
         props.data.map((val) => {
           return (

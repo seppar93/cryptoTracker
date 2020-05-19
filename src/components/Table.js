@@ -9,6 +9,9 @@ import * as actions from '../redux/actions/action';
 // Styling
 import './Table.css';
 
+// Components 
+import Loading from './Loading'
+
 export const Table = (props) => {
   return (
     <div className='Table-container'>
@@ -24,7 +27,7 @@ export const Table = (props) => {
         </thead>
         {/* add mapping of data */}
         {!props.data ? (
-          null
+          <Loading/>
         ) : (
           props.data.map((val) => {
             return (
@@ -51,7 +54,8 @@ export const Table = (props) => {
               </tbody>
             );
           })
-        )}
+        )
+        }
       </table>
     </div>
   );
