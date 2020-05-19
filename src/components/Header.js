@@ -71,9 +71,12 @@ function DropDownMenu(props) {
 
   function DropDownItem(props) {
     return (
-      <a className='menu-item'>
+      <a
+        href='#'
+        onClick={() => props.addCoin(props.coin)}
+        className='menu-item'>
         <span className='icon-button'>{props.leftIcon}</span>
-        <div onClick={() => props.addCoin(props.coin)}>{props.coin.name}</div>
+        <div>{props.coin.name}</div>
       </a>
     );
   }

@@ -74,6 +74,7 @@ a {
   border-radius: var(--border-radius);
   transition: background var(--speed);
   padding: 0.5rem;
+  cursor: pointer;
 }
 
 .menu-item:hover {
